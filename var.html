@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-items: center;
+
+            background-image: url(https://custom.cvent.com/851C36FCAE944E17AB465BD57AFEB1E0/pix/279f55c730c748019e8441d09474008e.jpg);
+
+            background-size: 700px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 210px;
+        }
+
+        .countdown-container {
+            margin: 30px 15px 0px;
+            /* flex-direction: raw; */
+            align-items: center;
+        }
+
+
+
+        .countdown-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 3px;
+            width: 20px;
+            float: left;
+            /* opacity: 0.2;
+            -webkit-clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0% 100%);
+            clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0% 100%);
+            z-index: 999;
+            background-color: yellow; */
+            /* position: absolute; */
+            background: linear-gradient(to bottom, transparent 50%, #D2A06B 50%);
+
+        }
+
+        .countdown-digit {
+            font-size: 30px;
+            color: #00437a !important;
+            z-index: 99999;
+            font-weight: 700;
+        }
+
+        .countdown-label {
+            font-size: 16px;
+
+            padding: 15px 5px;
+            flex-direction: column;
+            display: block;
+            font-weight: 700;
+            clear: both;
+            color: #00437a !important;
+        }
+    </style>
+    <title>Countdown Timer</title>
+</head>
+
+<body>
+
+    <div class="countdown-container">
+        <div class="countdown-card">
+            <div class="countdown-digit" id="day-tens">0</div>
+        </div>
+        <div class="countdown-card">
+            <div class="countdown-digit" id="day-ones">0</div>
+        </div>
+        <span class="countdown-label">DAYS</span>
+    </div>
+
+
+
+
+
+    <div class="countdown-container">
+        <div class="countdown-card">
+            <div class="countdown-digit" id="hour-tens">0</div>
+        </div>
+        <div class="countdown-card">
+            <div class="countdown-digit" id="hour-ones">0</div>
+        </div>
+        <span class="countdown-label">HRS</span>
+    </div>
+
+    <div class="countdown-container">
+        <div class="countdown-card">
+            <div class="countdown-digit" id="minute-tens">0</div>
+        </div>
+        <div class="countdown-card">
+            <div class="countdown-digit" id="minute-ones">0</div>
+        </div>
+        <span class="countdown-label">MIN</span>
+    </div>
+
+    <div class="countdown-container">
+        <div class="countdown-card">
+            <div class="countdown-digit" id="second-tens">0</div>
+        </div>
+        <div class="countdown-card">
+            <div class="countdown-digit" id="second-ones">0</div>
+        </div>
+        <span class="countdown-label">SEC</span>
+    </div>
+
+    <script>
+        // Set the date we're counting down to
+        const countDownDate = new Date("Feb 28, 2024 00:00:00").getTime();
+
+        // Update the countdown every 1 second
+        const x = setInterval(function () {
+            // Get the current date and time
+            const now = new Date().getTime();
+
+            // Calculate the difference between the current date/time and the countdown date/time
+            const distance = countDownDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the countdown
+            document.getElementById("day-tens").innerHTML = Math.floor(days / 10);
+            document.getElementById("day-ones").innerHTML = days % 10;
+
+            document.getElementById("hour-tens").innerHTML = Math.floor(hours / 10);
+            document.getElementById("hour-ones").innerHTML = hours % 10;
+
+            document.getElementById("minute-tens").innerHTML = Math.floor(minutes / 10);
+            document.getElementById("minute-ones").innerHTML = minutes % 10;
+
+            document.getElementById("second-tens").innerHTML = Math.floor(seconds / 10);
+            document.getElementById("second-ones").innerHTML = seconds % 10;
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    </script>
+
+</body>
+
+</html>
